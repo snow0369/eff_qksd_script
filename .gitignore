@@ -2,10 +2,6 @@
 tmp*
 *.hdf5
 
-# Dataholder
-*.npy
-*.pkl
-
 temp_workspace
 
 # Environment
