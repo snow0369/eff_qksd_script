@@ -11,8 +11,8 @@ from tqdm import tqdm
 from ofex.measurement.iterative_coefficient_splitting import init_ics, run_ics
 from base_utils import rec_path
 
-DIR_ICS = "./ics_data/"
-DIR_COV = "./cov_data/"
+DIR_ICS = "./buffer/ics_data/"
+DIR_COV = "./buffer/cov_data/"
 
 
 def path_ics(mol_name, transform, anticommute, shift_opt_lvl, ref2_name):

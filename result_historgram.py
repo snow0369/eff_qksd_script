@@ -11,10 +11,9 @@ from plot_tool import plot_histogram
 from ofex.measurement import sorted_insertion
 from ofex_algorithms.qksd import qksd_shot_allocation, sample_qksd
 from ofex_algorithms.qksd.qksd_utils import trunc_eigh
-from base_utils import prepare_main, approx_sampling_noise_norm_s
+from base_utils import prepare_main, approx_sampling_noise_norm_s, path_probbuf
 from ics_interface import ics_interface
 from result_base_setting import default_transform, default_n_trotter, default_shift_opt_lvl
-from result_meas_cost import path_probbuf
 
 DIR_RESULT_HISTOGRAM = "./histogram/"
 

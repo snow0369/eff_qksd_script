@@ -18,14 +18,16 @@ from ofex.utils.chem import molecule_example, run_driver
 from ofex_algorithms.qksd.qksd_simulation import ideal_qksd_toeplitz, ideal_qksd_nontoeplitz
 from ofex_algorithms.qksd.qksd_utils import toeplitz_arr_to_mat
 
-DIR_HAMILTONIAN = '/chemistry_data/hamiltonian/'
-DIR_REFSTATE = "/chemistry_data/reference_state/"
-DIR_SPECTRUM = "/chemistry_data/spectrum"
-DIR_PROPAGATOR = "/chemistry_data/propagator"
-
-DIR_QKSD = "./chemistry_qksd_data/"
 
 DEFAULT_DRIVER = "pyscf"
+
+DIR_HAMILTONIAN = './buffer/chemistry_data/hamiltonian/'
+DIR_REFSTATE = "./buffer/chemistry_data/reference_state/"
+DIR_SPECTRUM = "./buffer/chemistry_data/spectrum"
+DIR_PROPAGATOR = "./buffer/chemistry_data/propagator"
+
+DIR_QKSD = "./buffer/chemistry_qksd_data/"
+DIR_PROBBUF = "./buffer/qksd_prob/"
 
 
 def rec_path(dir_list: Tuple[str, ...], fname, tag):
@@ -73,6 +75,10 @@ def path_ideal_matrix(mol_name, transform, time_step_str, n_trotter, shift_opt_l
     else:
         return rec_path((DIR_QKSD, mol_name, transform, "ideal_mat", f"Δt={time_step_str}_trotter={n_trotter}"),
                      f"shift={shift_opt_lvl}_ref={ref_name}_toeplitz={toeplitz}.pkl", tag)
+
+def path_probbuf(mol_name, transform, anticommute, meas_opt_name):
+    meas_type = "FH" if not anticommute else "LCU"
+    return rec_path((DIR_PROBBUF, f"{mol_name}_{transform}", meas_opt_name), "prob_buf.pkl", meas_type)
 
 
 def prepare_hamiltonian_refstates(mol_name, transform,

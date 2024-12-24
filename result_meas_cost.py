@@ -17,7 +17,7 @@ from ofex.measurement import fragment_variance, sorted_insertion
 from ofex.measurement.iterative_coefficient_splitting import init_ics
 from ofex.state.state_tools import to_dense
 from ofex_algorithms.qksd import qksd_shot_allocation, sample_qksd
-from base_utils import prepare_main, rec_path
+from base_utils import prepare_main, path_probbuf
 from ics_interface import ics_interface, path_cov
 from result_base_setting import default_transform, default_n_trotter, default_n_qksd, default_shift_opt_lvl, \
     default_mol_list
@@ -102,14 +102,6 @@ def true_variance(mol_name, num_workers):
             true_state = apply_operator(propagator, true_state)
 
     return result
-
-
-DIR_PROBBUF = "./qksd_prob/"
-
-
-def path_probbuf(mol_name, transform, anticommute, meas_opt_name):
-    meas_type = "FH" if not anticommute else "LCU"
-    return rec_path((DIR_PROBBUF, f"{mol_name}_{transform}", meas_opt_name), "prob_buf.pkl", meas_type)
 
 
 def empirical_variance(mol_name, num_workers, tot_shots, n_batch):
